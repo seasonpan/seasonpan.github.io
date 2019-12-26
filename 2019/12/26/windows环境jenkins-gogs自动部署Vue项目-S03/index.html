@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>windows环境jenkins+gogs自动部署Vue项目 #S03 | Season</title>
+  <meta name="description" content="摘要：基于jenkins进行自动化部署Vue项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows环境jenkins+gogs自动部署Vue项目 #S03">
+<meta property="og:url" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/index.html">
+<meta property="og:site_name" content="饭盒尽头">
+<meta property="og:description" content="摘要：基于jenkins进行自动化部署Vue项目">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/de35b817019e4b6bcff53e4000ea2184.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/f1cddff2da5ccb80b448f3f0e2e9a422.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/84e1bb652d85777236ef0781554957aa.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/9a9e30ddd50af2a031f1e25542785bb3.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/4c95cfc0f6e8dcb71b581eda37e4e5d3.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/a73c749b85f03798764a3d59f19e8fbc.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/5263eed73eb1c51ac8eb8b0481b2b357.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/703957785931f40e81f95f27df97442d.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/ea2db382fe25497c826f1777360533fc.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/4c012d95fe6fef450f5498d506310b1d.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/48edf7b4e6a8fba775e3ff5414fc03e0.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/cf1a8d95fbddf8cace63e3b5a9727400.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/a3acc54a3fd90f66bcd420e172a96816.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/ff8b54ccba96a5364a2e32931af5fe9d.png">
+<meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/a856b91b8b3eab062b9d967681a0762b.png">
+<meta property="og:updated_time" content="2019-12-26T02:26:12.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows环境jenkins+gogs自动部署Vue项目 #S03">
+<meta name="twitter:description" content="摘要：基于jenkins进行自动化部署Vue项目">
+<meta name="twitter:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/de35b817019e4b6bcff53e4000ea2184.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="饭盒尽头" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/seasonpan" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm"></h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">饭盒尽头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hangzhou, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/注测/">注测</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Loop/">Event Loop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库备份/">数据库备份</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测绘/">测绘</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Event-Loop/" style="font-size: 13px;">Event Loop</a> <a href="/tags/crontab/" style="font-size: 13px;">crontab</a> <a href="/tags/数据库备份/" style="font-size: 13px;">数据库备份</a> <a href="/tags/测绘/" style="font-size: 14px;">测绘</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" class="title">windows环境jenkins+gogs自动部署Vue项目 #S03</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-26T02:12:13.000Z" itemprop="datePublished">2019-12-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/JavaScript/">JavaScript</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" class="title">setTimeout/$nextTick/promise.then的执行顺序 #S02</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-24T13:09:58.000Z" itemprop="datePublished">2019-11-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/数据库/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/10/28/利用linux-crontab在docker中进行数据库定时自动备份/" class="title">利用linux crontab在docker中进行数据库定时自动备份 #S01</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-10-28T02:28:16.000Z" itemprop="datePublished">2019-10-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/注测/">注测</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/11/大地测量/" class="title">2 大地测量 #C02</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-11T06:02:48.000Z" itemprop="datePublished">2019-06-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/注测/">注测</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/24/误差/" class="title">1 误差 #C01</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-24T06:28:30.000Z" itemprop="datePublished">2019-05-24</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Jenkins"><span class="toc-text">安装Jenkins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装插件"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Nodejs"><span class="toc-text">配置Nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置密钥"><span class="toc-text">配置密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建任务"><span class="toc-text">新建任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加构建步骤"><span class="toc-text">增加构建步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加构建后操作"><span class="toc-text">增加构建后操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gogs-webhook配置"><span class="toc-text">Gogs webhook配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装gogs插件"><span class="toc-text">1. 安装gogs插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在gogs仓库中配置"><span class="toc-text">2. 在gogs仓库中配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#邮件通知"><span class="toc-text">邮件通知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-全局配置"><span class="toc-text">1. 全局配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-项目邮件配置"><span class="toc-text">2. 项目邮件配置</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-windows环境jenkins-gogs自动部署Vue项目-S03" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      windows环境jenkins+gogs自动部署Vue项目 #S03
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" class="article-date">
+	  <time datetime="2019-12-26T02:12:13.000Z" itemprop="datePublished">2019-12-26</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>摘要：基于jenkins进行自动化部署Vue项目<br><a id="more"></a></p>
+<h2 id="安装Jenkins"><a href="#安装Jenkins" class="headerlink" title="安装Jenkins"></a>安装Jenkins</h2><p><strong>注意：工作空间不能放在 <code>Program Files (x86)</code> 文件夹中，否则会出现打包vue项目时，<code>public</code> 下静态资源及文件夹内容丢失的问题</strong>（是因为<code>Program Files (x86)</code> 的权限问题？）</p>
+<p>可修改 Jenkins 工作空间的目录：<br>打开Jenkins安装目录下的config.xml：C:\Program Files (x86)\Jenkins\config.xml<br>修改工作空间目录为：<code>&lt;workspaceDir&gt;D:/jenkins/workspace/${ITEM_FULL_NAME}&lt;/workspaceDir&gt;</code></p>
+<blockquote>
+<p>参考：<a href="https://www.crazyming.com/note/1491/" target="_blank" rel="noopener">jenkins打包vue项目，static静态资源文件夹内容丢失的问题</a></p>
+</blockquote>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>打开“系统管理”–“管理插件”  搜索相应插件名称，然后勾选安装</p>
+<ul>
+<li>gogs</li>
+<li>nodejs</li>
+<li>Publish over SSH</li>
+</ul>
+<p><img src="de35b817019e4b6bcff53e4000ea2184.png" alt="de35b817019e4b6bcff53e4000ea2184.png"></p>
+<h2 id="配置Nodejs"><a href="#配置Nodejs" class="headerlink" title="配置Nodejs"></a>配置Nodejs</h2><p>打开“系统管理”–“管理插件”  搜索 nodejs 然后勾选安装<br>打开“系统管理”–“Global Tool Configuration”   拉到底部 配置  node 版本</p>
+<h2 id="配置密钥"><a href="#配置密钥" class="headerlink" title="配置密钥"></a>配置密钥</h2><ol>
+<li>在Publish over SSH插件中配置本机的私钥，以便能远程连接服务器<br> 参考：<a href="https://blog.csdn.net/MenofGod/article/details/81941223" target="_blank" rel="noopener">Jenkins配置Publish Over SSH讲解说明</a></li>
+<li>在部署服务器的 <code>authorized_keys</code> 文件中添加jenkins所在机子的公钥</li>
+</ol>
+<p><strong>注意：私钥的格式为MII开头的老OpenSSH格式，否则会报错如下↓↓↓</strong></p>
+<p>报错内容：Message [invalid privatekey: [B@6d1266]<br>解决：密钥格式不对，jenkins无法识别，用 <code>ssh-keygen -t rsa -b 4096 -m PEM</code> 命令重新生成密钥对 或者 用 <code>PuTTYgen</code> 工具将已有的私钥转换为老的OpenSSH格式</p>
+<blockquote>
+<p><a href="https://issues.jenkins-ci.org/browse/JENKINS-57495?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel" target="_blank" rel="noopener">参考：</a><br>The problem is private key file format.<br>This is my private key header. This is from ssh-keygen on Macbook, not from puttygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">&gt;b3Blb....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>“BEGIN OPENSSH” and “b3Blb….” means the “newer OpenSSH format”.<br>Jenkins or plugin failed to read this format. If you want to make “older” OpenSSH format, try this.<br>Or make your keys by using old ssh-keygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;ssh-keygen -t rsa -b 4096 -m PEM</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>Your new private key should looks like this. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">&gt;MIIE....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>ps. You can’t use ed25519 algorithm. Because ed25519 needs newer format.</p>
+</blockquote>
+<h2 id="新建任务"><a href="#新建任务" class="headerlink" title="新建任务"></a>新建任务</h2><p>选构建一个自由风格的软件项目</p>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/14e356cf8bb4" target="_blank" rel="noopener">Jenkins+Gogs搭建自动化部署平台</a></p>
+</blockquote>
+<h3 id="增加构建步骤"><a href="#增加构建步骤" class="headerlink" title="增加构建步骤"></a>增加构建步骤</h3><p>将拉取过来的源码打包后建立压缩包</p>
+<p>注意是： Execute Windows batch command<br><img src="f1cddff2da5ccb80b448f3f0e2e9a422.png" alt="f1cddff2da5ccb80b448f3f0e2e9a422.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"C:\Program Files\7-Zip\7z.exe"</span> a <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\*"</span></span><br></pre></td></tr></table></figure>
+<h3 id="增加构建后操作"><a href="#增加构建后操作" class="headerlink" title="增加构建后操作"></a>增加构建后操作</h3><p>用Publish over SSH将压缩包传到远程服务器</p>
+<p><img src="84e1bb652d85777236ef0781554957aa.png" alt="84e1bb652d85777236ef0781554957aa.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /hdb/hcx/www/*   //删除目录下的所有文件和文件夹</span><br><span class="line">mv -f /hdb/hcx/dist.zip /hdb/hcx/www    //移动压缩包</span><br><span class="line"><span class="built_in">cd</span> /hdb/hcx/www</span><br><span class="line">unzip dist.zip  //解压</span><br><span class="line">rm -rf dist.zip  //删除压缩包</span><br></pre></td></tr></table></figure>
+<h2 id="Gogs-webhook配置"><a href="#Gogs-webhook配置" class="headerlink" title="Gogs webhook配置"></a>Gogs webhook配置</h2><blockquote>
+<p>参考：<a href="https://www.cnblogs.com/stulzq/p/8629720.html" target="_blank" rel="noopener">Jenkins配置Gogs webhook插件</a></p>
+</blockquote>
+<h3 id="1-安装gogs插件"><a href="#1-安装gogs插件" class="headerlink" title="1. 安装gogs插件"></a>1. 安装gogs插件</h3><h3 id="2-在gogs仓库中配置"><a href="#2-在gogs仓库中配置" class="headerlink" title="2. 在gogs仓库中配置"></a>2. 在gogs仓库中配置</h3><p><img src="9a9e30ddd50af2a031f1e25542785bb3.png" alt="9a9e30ddd50af2a031f1e25542785bb3.png"></p>
+<p><img src="4c95cfc0f6e8dcb71b581eda37e4e5d3.png" alt="4c95cfc0f6e8dcb71b581eda37e4e5d3.png"></p>
+<p><img src="a73c749b85f03798764a3d59f19e8fbc.png" alt="a73c749b85f03798764a3d59f19e8fbc.png"></p>
+<p>点击 测试推送，推送成功后会看到一条推送记录。<br>最终触发jenkins进行构建，蓝色表示构建成功。</p>
+<p><img src="5263eed73eb1c51ac8eb8b0481b2b357.png" alt="5263eed73eb1c51ac8eb8b0481b2b357.png"></p>
+<ul>
+<li>蓝色：任务最近一次构建是成功的</li>
+<li>红色：任务最后一次构建是失败的</li>
+<li>黄色：任务最后一次构建表示成功了，但不稳定（主要是因为有失败的测试）</li>
+<li>灰色：任务从未被执行过或被禁用了</li>
+</ul>
+<h2 id="邮件通知"><a href="#邮件通知" class="headerlink" title="邮件通知"></a>邮件通知</h2><blockquote>
+<p>参考：<br><a href="https://cloud.tencent.com/developer/article/1061904" target="_blank" rel="noopener">jenkins邮件插件中的内容参数设置</a><br><a href="https://www.cnblogs.com/imyalost/p/8781759.html" target="_blank" rel="noopener">环境部署（八）：jenkins配置邮件通知</a><br><a href="https://blog.51cto.com/lovejxs/2435328" target="_blank" rel="noopener">Jenkins配置邮件通知图文详解</a></p>
+</blockquote>
+<p>自带的邮件通知功能比较简单，另安装插件 ： <code>Email Extension Plugin</code></p>
+<h3 id="1-全局配置"><a href="#1-全局配置" class="headerlink" title="1. 全局配置"></a>1. 全局配置</h3><p>在 configure中设置：<br><strong>1. Jenkins Location</strong> 👇</p>
+<p><strong>系统管理员邮件地址</strong><br>必须填，不然会报错：<br><a href="https://blog.csdn.net/tt75281920/article/details/44945215" target="_blank" rel="noopener">501 mail from address must be same as authorization user</a><br><img src="703957785931f40e81f95f27df97442d.png" alt="703957785931f40e81f95f27df97442d.png"></p>
+<p><strong>2. Extended E-mail Notification</strong> 👇<br><img src="ea2db382fe25497c826f1777360533fc.png" alt="ea2db382fe25497c826f1777360533fc.png"><br><img src="4c012d95fe6fef450f5498d506310b1d.png" alt="4c012d95fe6fef450f5498d506310b1d.png"></p>
+<p>Default Content右键内容模板：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>$&#123;ENV, var="JOB_NAME"&#125;-第$&#123;BUILD_NUMBER&#125;次构建日志<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">leftmargin</span>=<span class="string">"8"</span> <span class="attr">marginwidth</span>=<span class="string">"0"</span> <span class="attr">topmargin</span>=<span class="string">"8"</span> <span class="attr">marginheight</span>=<span class="string">"4"</span> <span class="attr">offset</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"95%"</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">style</span>=<span class="string">"font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      本邮件由系统自动发出，无需回复！<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">      以下为$&#123;PROJECT_NAME &#125;项目构建信息<span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#CC0000"</span>&gt;</span>构建结果 - $&#123;BUILD_STATUS&#125;<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>构建信息<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">align</span>=<span class="string">"center"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目名称 ： $&#123;PROJECT_NAME&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建编号 ： 第$&#123;BUILD_NUMBER&#125;次构建<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>触发原因： $&#123;CAUSE&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建状态： $&#123;BUILD_STATUS&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建日志： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;BUILD_URL&#125;console"</span>&gt;</span>$&#123;BUILD_URL&#125;console<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建 Url ： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;BUILD_URL&#125;"</span>&gt;</span>$&#123;BUILD_URL&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>工作目录 ： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;ws"</span>&gt;</span>$&#123;PROJECT_URL&#125;ws<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目 Url ： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;"</span>&gt;</span>$&#123;PROJECT_URL&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>失败用例<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> /&gt;</span></span><br><span class="line">        $FAILED_TESTS<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>最近提交GIT_REVISION: $&#123;GIT_REVISION&#125;<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">          $&#123;CHANGES_SINCE_LAST_SUCCESS, reverse=true, format="%c", changesFormat="<span class="tag">&lt;<span class="name">li</span>&gt;</span>%d [%a] %m<span class="tag">&lt;/<span class="name">li</span>&gt;</span>"&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        详细提交: <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;changes"</span>&gt;</span>$&#123;PROJECT_URL&#125;changes<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>变更集<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> /&gt;</span></span><br><span class="line">        $&#123;JELLY_SCRIPT,template="html"&#125;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3. 邮件通知</strong> 👇</p>
+<p><img src="48edf7b4e6a8fba775e3ff5414fc03e0.png" alt="48edf7b4e6a8fba775e3ff5414fc03e0.png"></p>
+<p>测试成功会发一个测试邮件</p>
+<p><img src="cf1a8d95fbddf8cace63e3b5a9727400.png" alt="cf1a8d95fbddf8cace63e3b5a9727400.png"></p>
+<h3 id="2-项目邮件配置"><a href="#2-项目邮件配置" class="headerlink" title="2. 项目邮件配置"></a>2. 项目邮件配置</h3><p>在项目配置的构建完成中添加邮件提醒</p>
+<p><img src="a3acc54a3fd90f66bcd420e172a96816.png" alt="a3acc54a3fd90f66bcd420e172a96816.png"></p>
+<p><img src="ff8b54ccba96a5364a2e32931af5fe9d.png" alt="ff8b54ccba96a5364a2e32931af5fe9d.png"></p>
+<p>最终收到的邮件：<br><img src="a856b91b8b3eab062b9d967681a0762b.png" alt="a856b91b8b3eab062b9d967681a0762b.png"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" title="windows环境jenkins+gogs自动部署Vue项目 #S03" target="_blank" rel="external">https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/seasonpan" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/seasonpan" target="_blank"><span class="text-dark"></span><small class="ml-1x">饭盒尽头</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" title="setTimeout/$nextTick/promise.then的执行顺序 #S02"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/';
+        
+        this.page.identifier = 'windows环境jenkins-gogs自动部署Vue项目-S03';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + '' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
