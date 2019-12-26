@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/a3acc54a3fd90f66bcd420e172a96816.png">
 <meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/ff8b54ccba96a5364a2e32931af5fe9d.png">
 <meta property="og:image" content="https://seasonpan.github.io/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/a856b91b8b3eab062b9d967681a0762b.png">
-<meta property="og:updated_time" content="2019-12-26T02:28:31.467Z">
+<meta property="og:updated_time" content="2019-12-26T02:32:49.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows环境jenkins+gogs自动部署Vue项目 #S03">
 <meta name="twitter:description" content="摘要：基于jenkins进行自动化部署Vue项目">
@@ -387,14 +387,14 @@
 <p><strong>注意：私钥的格式为MII开头的老OpenSSH格式，否则会报错如下↓↓↓</strong></p>
 <p>报错内容：Message [invalid privatekey: [B@6d1266]<br>解决：密钥格式不对，jenkins无法识别，用 <code>ssh-keygen -t rsa -b 4096 -m PEM</code> 命令重新生成密钥对 或者 用 <code>PuTTYgen</code> 工具将已有的私钥转换为老的OpenSSH格式</p>
 <blockquote>
-<p><a href="https://issues.jenkins-ci.org/browse/JENKINS-57495?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel" target="_blank" rel="noopener">参考：</a><br>The problem is private key file format.<br>This is my private key header. This is from ssh-keygen on Macbook, not from puttygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">&gt;b3Blb....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://issues.jenkins-ci.org/browse/JENKINS-57495?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel" target="_blank" rel="noopener">参考：</a><br>The problem is private key file format.<br>This is my private key header. This is from ssh-keygen on Macbook, not from puttygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; -----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">&gt; b3Blb....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>“BEGIN OPENSSH” and “b3Blb….” means the “newer OpenSSH format”.<br>Jenkins or plugin failed to read this format. If you want to make “older” OpenSSH format, try this.<br>Or make your keys by using old ssh-keygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;ssh-keygen -t rsa -b 4096 -m PEM</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p>“BEGIN OPENSSH” and “b3Blb….” means the “newer OpenSSH format”.<br>Jenkins or plugin failed to read this format. If you want to make “older” OpenSSH format, try this.<br>Or make your keys by using old ssh-keygen.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh-keygen -t rsa -b 4096 -m PEM</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>Your new private key should looks like this. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">&gt;MIIE....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; -----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">&gt; MIIE....</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>ps. You can’t use ed25519 algorithm. Because ed25519 needs newer format.</p>
