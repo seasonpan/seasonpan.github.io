@@ -26,17 +26,17 @@
 <meta property="og:site_name" content="饭盒尽头">
 <meta property="og:description" content="摘要：windows环境下jenkins部署备份与回滚">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="en-resource://database/18110:1">
-<meta property="og:image" content="en-resource://database/18100:1">
-<meta property="og:image" content="en-resource://database/18102:1">
-<meta property="og:image" content="en-resource://database/18104:1">
-<meta property="og:image" content="en-resource://database/18106:1">
-<meta property="og:image" content="en-resource://database/18108:1">
-<meta property="og:updated_time" content="2020-01-14T02:23:18.406Z">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/3854575c2943abc44b3a796f4f1439fb.png">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/a57df52ba02bb7f2d5e6ce44dd4bff2a.png">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/d3cf45cf6ada0859311759df48e1ac3b.png">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/0942a03b85555b6bf0a22f20526923a2.png">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/7ff2d30eeed58da9ca1320f784887e62.png">
+<meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/84e1bb652d85777236ef0781554957aa.png">
+<meta property="og:updated_time" content="2020-01-14T02:25:49.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows环境下jenkins部署备份与回滚 #S04">
 <meta name="twitter:description" content="摘要：windows环境下jenkins部署备份与回滚">
-<meta name="twitter:image" content="en-resource://database/18110:1">
+<meta name="twitter:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/3854575c2943abc44b3a796f4f1439fb.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/index.html">
   
@@ -359,7 +359,7 @@
       
         <p>摘要：windows环境下jenkins部署备份与回滚<br><a id="more"></a></p>
 <p>在系统版本迭代过程中，可能出现当前版本发布后存在一些问题，这种情况下就需要回滚上一个版本，利用jenkins可以实现项目的备份与回滚。</p>
-<p>👇最终效果<br><img src="en-resource://database/18110:1" alt="3854575c2943abc44b3a796f4f1439fb.png"></p>
+<p>👇最终效果<br><img src="3854575c2943abc44b3a796f4f1439fb.png" alt="3854575c2943abc44b3a796f4f1439fb.png"></p>
 <h1 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1. 安装插件"></a>1. 安装插件</h1><p>安装插件，可以扩展参数化构建过程</p>
 <ul>
 <li><code>Groovy</code></li>
@@ -369,7 +369,7 @@
 <h1 id="2-配置参数化构建过程"><a href="#2-配置参数化构建过程" class="headerlink" title="2. 配置参数化构建过程"></a>2. 配置参数化构建过程</h1><ol>
 <li>在Gogs Webhook中勾选 <code>This project is parameterized</code></li>
 <li>添加<code>Choice Parameter</code>，可选发布或是回滚</li>
-<li>添加<code>Active Choices Reactive Parameter</code>，选择回滚的版本<br><img src="en-resource://database/18100:1" alt="a57df52ba02bb7f2d5e6ce44dd4bff2a.png"><br><img src="en-resource://database/18102:1" alt="d3cf45cf6ada0859311759df48e1ac3b.png"></li>
+<li>添加<code>Active Choices Reactive Parameter</code>，选择回滚的版本<br><img src="a57df52ba02bb7f2d5e6ce44dd4bff2a.png" alt="a57df52ba02bb7f2d5e6ce44dd4bff2a.png"><br><img src="d3cf45cf6ada0859311759df48e1ac3b.png" alt="d3cf45cf6ada0859311759df48e1ac3b.png"></li>
 </ol>
 <p>在windows环境下，列出备份文件夹中所有的历史版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rollback=[&apos;cmd&apos;, &apos;/c&apos;, &apos;cd d:/ &amp; cd D://jenkins/workspace/backup/hc_data_admin_client &amp; dir  /d /b *.zip&apos;].execute().text.readLines()</span><br><span class="line"></span><br><span class="line">if (action.equals(&quot;RollBack&quot;)) &#123;</span><br><span class="line">  return rollback</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  return [&quot;选择RollBack后显示&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="3-构建"><a href="#3-构建" class="headerlink" title="3. 构建"></a>3. 构建</h1><ol>
@@ -378,10 +378,10 @@
 <li>若是RollBack情况，则将备份文件拷贝至dist文件夹中（<em>因为Send build artifacts over SSH中传送文件到远程服务器的功能中，本地文件只能选择Workspace中的文件，故将备份文件先拷贝至dist文件夹，等构建完成后，统一进行构建后操作</em>）</li>
 <li>若要用shell，可参考<a href="https://www.jianshu.com/p/4aa5c62a8876" target="_blank" rel="noopener">Use Shell Execute with Jenkins windows master/slave</a></li>
 </ol>
-<p>👇构建<br><img src="en-resource://database/18104:1" alt="0942a03b85555b6bf0a22f20526923a2.png"><br><code>&amp;&amp;</code>表示上一步完成才进行下一步操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"构建"</span></span><br><span class="line"></span><br><span class="line">npm install &amp;&amp; npm run build:prod &amp;&amp; <span class="string">"C:\Program Files\7-Zip\7z.exe"</span> a <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\*"</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"备份文件"</span> &amp;&amp; copy /y <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\hc_data_admin_client-%date:~0,4%-%date:~5,2%-%date:~8,2%.zip"</span></span><br></pre></td></tr></table></figure></p>
-<p>👇回滚<br><img src="en-resource://database/18106:1" alt="7ff2d30eeed58da9ca1320f784887e62.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"回滚文件%rollback%"</span> &amp;&amp; copy /y <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\%rollback%"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span></span><br></pre></td></tr></table></figure></p>
+<p>👇构建<br><img src="0942a03b85555b6bf0a22f20526923a2.png" alt="0942a03b85555b6bf0a22f20526923a2.png"><br><code>&amp;&amp;</code>表示上一步完成才进行下一步操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"构建"</span></span><br><span class="line"></span><br><span class="line">npm install &amp;&amp; npm run build:prod &amp;&amp; <span class="string">"C:\Program Files\7-Zip\7z.exe"</span> a <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\*"</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"备份文件"</span> &amp;&amp; copy /y <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\hc_data_admin_client-%date:~0,4%-%date:~5,2%-%date:~8,2%.zip"</span></span><br></pre></td></tr></table></figure></p>
+<p>👇回滚<br><img src="7ff2d30eeed58da9ca1320f784887e62.png" alt="7ff2d30eeed58da9ca1320f784887e62.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"回滚文件%rollback%"</span> &amp;&amp; copy /y <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\%rollback%"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="4-构建后操作"><a href="#4-构建后操作" class="headerlink" title="4. 构建后操作"></a>4. 构建后操作</h1><p>用Publish over SSH将压缩包传到远程服务器</p>
-<p><img src="en-resource://database/18108:1" alt="84e1bb652d85777236ef0781554957aa.png"></p>
+<p><img src="84e1bb652d85777236ef0781554957aa.png" alt="84e1bb652d85777236ef0781554957aa.png"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /hdb/hcx/www/*   //删除目录下的所有文件和文件夹</span><br><span class="line">mv -f /hdb/hcx/dist.zip /hdb/hcx/www    //移动压缩包</span><br><span class="line"><span class="built_in">cd</span> /hdb/hcx/www</span><br><span class="line">unzip dist.zip  //解压</span><br><span class="line">rm -rf dist.zip  //删除压缩包</span><br></pre></td></tr></table></figure>
 <p>之后的邮件通知等参考「windows环境jenkins+gogs自动部署Vue项目 #S03」</p>
 <blockquote>
