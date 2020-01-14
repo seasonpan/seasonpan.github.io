@@ -17,23 +17,16 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>setTimeout/$nextTick/promise.then的执行顺序 #S02 | Season</title>
-  <meta name="description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
-<meta name="keywords" content="Event Loop">
-<meta property="og:type" content="article">
-<meta property="og:title" content="setTimeout&#x2F;$nextTick&#x2F;promise.then的执行顺序 #S02">
-<meta property="og:url" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/index.html">
+  <title>归档: 2020 | Season</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="饭盒尽头">
+<meta property="og:url" content="https://seasonpan.github.io/archives/2020/index.html">
 <meta property="og:site_name" content="饭盒尽头">
-<meta property="og:description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/Image.png">
-<meta property="og:updated_time" content="2019-12-26T01:19:36.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="setTimeout&#x2F;$nextTick&#x2F;promise.then的执行顺序 #S02">
-<meta name="twitter:description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
-<meta name="twitter:image" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/Image.png">
+<meta name="twitter:title" content="饭盒尽头">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/index.html">
+  <link rel="canonical" href="https://seasonpan.github.io/archives/2020/index.html">
   
     <link rel="alternate" href="/atom.xml" title="饭盒尽头" type="application/atom+xml">
   
@@ -301,197 +294,49 @@
 
   
   
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">文章目录</h3>
-      
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
-  <div class="content">
-  <article id="post-setTimeout-nextTick-promise-then的执行顺序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  	<article class="content article article-archives article-type-list" itemscope>
+	    <header class="article-header">
+	      <h1 itemprop="title">归档: 2020</h1>
+	      <p class="text-muted">共 1 篇文章</p>
+	    </header>
+	    <div class="article-body">
+	      
+  
+  
     
-    <div class="article-header">
+    
       
-        
-  
-    <h1 class="article-title" itemprop="name">
-      setTimeout/$nextTick/promise.then的执行顺序 #S02
-    </h1>
-  
-
       
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" class="article-date">
-	  <time datetime="2019-11-24T13:09:58.000Z" itemprop="datePublished">2019-11-24</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Event-Loop/">Event Loop</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/#comments" class="article-comment-link">评论</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <p><strong>问题：</strong> 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢</p>
-<p><strong>1. 定义：</strong></p>
-<ul>
-<li><p>$nextTick:<br>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。</p>
-<blockquote>
-<p>Vue文档中提到：<br>Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。…………</p>
-<p>例如，当你设置 vm.someData = ‘new value’ ，该组件不会立即重新渲染。当刷新队列时，组件会在事件循环队列清空时的下一个“tick”更新。多数情况我们不需要关心这个过程，但是如果你想在 DOM 状态更新后做点什么，这就可能会有些棘手。虽然 Vue.js 通常鼓励开发人员沿着“数据驱动”的方式思考，避免直接接触 DOM，但是有时我们确实要这么做。<u>为了在数据变化之后等待 Vue 完成更新 DOM ，可以在数据变化之后立即使用 Vue.nextTick(callback) 。</u>这样回调函数在 DOM 更新完成后就会调用。</p>
-</blockquote>
-</li>
-<li><p>setTimeout:<br>用于设置一个定时器，该定时器在定时器到期后执行一个函数或指定的一段代码。</p>
-</li>
-</ul>
-<p><strong>2. 执行顺序</strong></p>
-<p>要知道$nextTick/setTimeout/Promise的执行顺序，首先要了解Event Loop。</p>
-<p><strong>Event Loop</strong></p>
-<p>JS任务队列的异步任务类型有：</p>
-<ul>
-<li>宏任务(task)：<code>setTimeout</code>、<code>setInterval</code>、<code>setImmediate</code>、<code>I/O</code>、<code>UI交互事件</code></li>
-<li>微任务(microtask)：<code>Promise</code>、<code>process.nextTick</code>、<code>MutaionObserver</code></li>
-</ul>
-<p>JS一次完整的Event Loop执行顺序是：</p>
-<ol>
-<li>执行全局Script同步代码，这些同步代码有一些是同步语句，有一些是异步语句（比如setTimeout等）；<br>（timer类型的API（setTimeout/setInterval）注册的函数，等到期后进入task队列；其余API注册函数直接进入自身对应的task/microtask队列）</li>
-<li>全局Script代码执行完毕后，调用栈Stack会清空；</li>
-<li>执行microtask队列中的任务，直至清空</li>
-<li>microtask queue中的所有任务都执行完毕，此时microtask queue为空队列，调用栈Stack也为空；</li>
-<li>执行宏队列macrotask queue的任务</li>
-<li>执行完毕后，调用栈Stack为空</li>
-<li>重复第3-5的步骤</li>
-</ol>
-<p>注意的是：</p>
-<ul>
-<li>宏队列macrotask一次只从队列中取一个任务执行，执行完后就去执行微任务队列中的任务；</li>
-<li>微任务队列中所有的任务都会被依次取出来执行，知道microtask queue为空；</li>
-<li>图中没有画UI rendering的节点，因为这个是由浏览器自行判断决定的，但是只要执行UI rendering，它的节点是在执行完所有的微任务之后，下一个宏任务之前，紧跟着执行UI render。</li>
-</ul>
-<p><img src="Image.png" alt="Image.png"></p>
-<p><strong>为什么process.nextTick 永远大于 promise.then？</strong><br>因为Node中，_tickCallback在每一次执行完TaskQueue中的一个任务后被调用，而这个_tickCallback中实质上干了两件事：</p>
-<ol>
-<li>nextTickQueue中所有任务执行掉(长度最大1e4，Node版本v6.9.1)</li>
-<li>第一步执行完后执行_runMicrotasks函数，执行microtask中的部分(promise.then注册的回调)</li>
-</ol>
-<p>查了下Vuelayers的map初始化的源码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>._createPromise = <span class="built_in">Promise</span>.resolve(<span class="keyword">this</span>.beforeInit())</span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.init())</span><br><span class="line">.then(makeEventEmitter(<span class="string">'created'</span>))</span><br></pre></td></tr></table></figure></p>
-<p><strong>因此</strong></p>
-<p>基于以上，$nextTick的执行顺序在setTimeout之前，而Vuelayers封装的map初始化方法是一个promise，所以$nextTick中map还没初始化完成，要在setTimeout中才能对map进行操作。</p>
-<hr>
-<p>参考资料：</p>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/33090541" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33090541</a><br><a href="https://juejin.im/post/5b8f76675188255c7c653811" target="_blank" rel="noopener">https://juejin.im/post/5b8f76675188255c7c653811</a><br><a href="https://juejin.im/post/5bd30dabe51d4510164a5be4" target="_blank" rel="noopener">https://juejin.im/post/5bd30dabe51d4510164a5be4</a></p>
-</blockquote>
-
-      
-    </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
+      <section class="panel panel-default b-no">
+        <div class="panel-heading" role="tab">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
+              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
+              2020
+            </a>
+            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
+          </h3>
+        </div>
+        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
+        <div class="panel-body">
+          <div class="collection">
     
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" title="setTimeout/$nextTick/promise.then的执行顺序 #S02" target="_blank" rel="external">https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/</a>
-    </li>
     
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/seasonpan" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/seasonpan" target="_blank"><span class="text-dark"></span><small class="ml-1x">饭盒尽头</small></a></h3>
-        <div>个人简介。</div>
-      </div>
-    </figure>
-  </div>
-</div>
-
-
-    </div>
-  </article>
-  
-    
-  <section id="comments">
-  	
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </section>
+<a href="/2020/01/14/windows环境下jenkins部署备份与回滚-S04/" class="collection-item" target="_blank" itemprop="url">
+  <time datetime="2020-01-14T02:18:58.000Z" itemprop="datePublished">2020-01-14</time>
+  <span>&nbsp;&nbsp;&nbsp;</span> windows环境下jenkins部署备份与回滚 #S04
+</a>
 
 
   
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
   
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" title="windows环境jenkins+gogs自动部署Vue项目 #S03"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2019/10/28/利用linux-crontab在docker中进行数据库定时自动备份/" title="利用linux crontab在docker中进行数据库定时自动备份 #S01"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-    <li class="toggle-toc">
-      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
-        <span>[&nbsp;</span><span>文章目录</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
-    
-  </div>
-  </div>
-</nav>
+    </div></div></div></section>
   
 
-
+	    </div>
+  	</article>
+  	 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -530,29 +375,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-
-
-   
-
-
-
-
-   
-    
-    <script defer>
-    var disqus_config = function () {
-        
-            this.page.url = 'https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/';
-        
-        this.page.identifier = 'setTimeout-nextTick-promise-then的执行顺序';
-    };
-    (function() { 
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + '' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
 
 
 

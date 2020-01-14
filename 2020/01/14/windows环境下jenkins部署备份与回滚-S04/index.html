@@ -17,23 +17,28 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>setTimeout/$nextTick/promise.then的执行顺序 #S02 | Season</title>
-  <meta name="description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
-<meta name="keywords" content="Event Loop">
+  <title>windows环境下jenkins部署备份与回滚 #S04 | Season</title>
+  <meta name="description" content="摘要：windows环境下jenkins部署备份与回滚">
+<meta name="keywords" content="Jenkins">
 <meta property="og:type" content="article">
-<meta property="og:title" content="setTimeout&#x2F;$nextTick&#x2F;promise.then的执行顺序 #S02">
-<meta property="og:url" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/index.html">
+<meta property="og:title" content="windows环境下jenkins部署备份与回滚 #S04">
+<meta property="og:url" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/index.html">
 <meta property="og:site_name" content="饭盒尽头">
-<meta property="og:description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
+<meta property="og:description" content="摘要：windows环境下jenkins部署备份与回滚">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/Image.png">
-<meta property="og:updated_time" content="2019-12-26T01:19:36.769Z">
+<meta property="og:image" content="en-resource://database/18110:1">
+<meta property="og:image" content="en-resource://database/18100:1">
+<meta property="og:image" content="en-resource://database/18102:1">
+<meta property="og:image" content="en-resource://database/18104:1">
+<meta property="og:image" content="en-resource://database/18106:1">
+<meta property="og:image" content="en-resource://database/18108:1">
+<meta property="og:updated_time" content="2020-01-14T02:23:18.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="setTimeout&#x2F;$nextTick&#x2F;promise.then的执行顺序 #S02">
-<meta name="twitter:description" content="问题： 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢 1. 定义：  $nextTick:在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。  Vue文档中提到：Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，">
-<meta name="twitter:image" content="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/Image.png">
+<meta name="twitter:title" content="windows环境下jenkins部署备份与回滚 #S04">
+<meta name="twitter:description" content="摘要：windows环境下jenkins部署备份与回滚">
+<meta name="twitter:image" content="en-resource://database/18110:1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/index.html">
+  <link rel="canonical" href="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/index.html">
   
     <link rel="alternate" href="/atom.xml" title="饭盒尽头" type="application/atom+xml">
   
@@ -305,21 +310,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-安装插件"><span class="toc-text">1. 安装插件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-配置参数化构建过程"><span class="toc-text">2. 配置参数化构建过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-构建"><span class="toc-text">3. 构建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-构建后操作"><span class="toc-text">4. 构建后操作</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-setTimeout-nextTick-promise-then的执行顺序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-windows环境下jenkins部署备份与回滚-S04" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      setTimeout/$nextTick/promise.then的执行顺序 #S02
+      windows环境下jenkins部署备份与回滚 #S04
     </h1>
   
 
@@ -327,80 +332,60 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" class="article-date">
-	  <time datetime="2019-11-24T13:09:58.000Z" itemprop="datePublished">2019-11-24</time>
+	<a href="/2020/01/14/windows环境下jenkins部署备份与回滚-S04/" class="article-date">
+	  <time datetime="2020-01-14T02:18:58.000Z" itemprop="datePublished">2020-01-14</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="/categories/CI-CD/">CI/CD</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Event-Loop/">Event Loop</a>
+	<a class="article-tag-link" href="/tags/Jenkins/">Jenkins</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/14/windows环境下jenkins部署备份与回滚-S04/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p><strong>问题：</strong> 最近用vuelayers，需要在map初始化完成的回调方法中设置map的中心点，发现用$nextTick无法设置，但是setTimeout可以，这是为什么呢</p>
-<p><strong>1. 定义：</strong></p>
+        <p>摘要：windows环境下jenkins部署备份与回滚<br><a id="more"></a></p>
+<p>在系统版本迭代过程中，可能出现当前版本发布后存在一些问题，这种情况下就需要回滚上一个版本，利用jenkins可以实现项目的备份与回滚。</p>
+<p>👇最终效果<br><img src="en-resource://database/18110:1" alt="3854575c2943abc44b3a796f4f1439fb.png"></p>
+<h1 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1. 安装插件"></a>1. 安装插件</h1><p>安装插件，可以扩展参数化构建过程</p>
 <ul>
-<li><p>$nextTick:<br>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。</p>
-<blockquote>
-<p>Vue文档中提到：<br>Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。…………</p>
-<p>例如，当你设置 vm.someData = ‘new value’ ，该组件不会立即重新渲染。当刷新队列时，组件会在事件循环队列清空时的下一个“tick”更新。多数情况我们不需要关心这个过程，但是如果你想在 DOM 状态更新后做点什么，这就可能会有些棘手。虽然 Vue.js 通常鼓励开发人员沿着“数据驱动”的方式思考，避免直接接触 DOM，但是有时我们确实要这么做。<u>为了在数据变化之后等待 Vue 完成更新 DOM ，可以在数据变化之后立即使用 Vue.nextTick(callback) 。</u>这样回调函数在 DOM 更新完成后就会调用。</p>
-</blockquote>
-</li>
-<li><p>setTimeout:<br>用于设置一个定时器，该定时器在定时器到期后执行一个函数或指定的一段代码。</p>
-</li>
+<li><code>Groovy</code></li>
+<li><code>Active choices</code></li>
+<li><code>Conditional BuildStep</code></li>
 </ul>
-<p><strong>2. 执行顺序</strong></p>
-<p>要知道$nextTick/setTimeout/Promise的执行顺序，首先要了解Event Loop。</p>
-<p><strong>Event Loop</strong></p>
-<p>JS任务队列的异步任务类型有：</p>
-<ul>
-<li>宏任务(task)：<code>setTimeout</code>、<code>setInterval</code>、<code>setImmediate</code>、<code>I/O</code>、<code>UI交互事件</code></li>
-<li>微任务(microtask)：<code>Promise</code>、<code>process.nextTick</code>、<code>MutaionObserver</code></li>
-</ul>
-<p>JS一次完整的Event Loop执行顺序是：</p>
-<ol>
-<li>执行全局Script同步代码，这些同步代码有一些是同步语句，有一些是异步语句（比如setTimeout等）；<br>（timer类型的API（setTimeout/setInterval）注册的函数，等到期后进入task队列；其余API注册函数直接进入自身对应的task/microtask队列）</li>
-<li>全局Script代码执行完毕后，调用栈Stack会清空；</li>
-<li>执行microtask队列中的任务，直至清空</li>
-<li>microtask queue中的所有任务都执行完毕，此时microtask queue为空队列，调用栈Stack也为空；</li>
-<li>执行宏队列macrotask queue的任务</li>
-<li>执行完毕后，调用栈Stack为空</li>
-<li>重复第3-5的步骤</li>
+<h1 id="2-配置参数化构建过程"><a href="#2-配置参数化构建过程" class="headerlink" title="2. 配置参数化构建过程"></a>2. 配置参数化构建过程</h1><ol>
+<li>在Gogs Webhook中勾选 <code>This project is parameterized</code></li>
+<li>添加<code>Choice Parameter</code>，可选发布或是回滚</li>
+<li>添加<code>Active Choices Reactive Parameter</code>，选择回滚的版本<br><img src="en-resource://database/18100:1" alt="a57df52ba02bb7f2d5e6ce44dd4bff2a.png"><br><img src="en-resource://database/18102:1" alt="d3cf45cf6ada0859311759df48e1ac3b.png"></li>
 </ol>
-<p>注意的是：</p>
-<ul>
-<li>宏队列macrotask一次只从队列中取一个任务执行，执行完后就去执行微任务队列中的任务；</li>
-<li>微任务队列中所有的任务都会被依次取出来执行，知道microtask queue为空；</li>
-<li>图中没有画UI rendering的节点，因为这个是由浏览器自行判断决定的，但是只要执行UI rendering，它的节点是在执行完所有的微任务之后，下一个宏任务之前，紧跟着执行UI render。</li>
-</ul>
-<p><img src="Image.png" alt="Image.png"></p>
-<p><strong>为什么process.nextTick 永远大于 promise.then？</strong><br>因为Node中，_tickCallback在每一次执行完TaskQueue中的一个任务后被调用，而这个_tickCallback中实质上干了两件事：</p>
-<ol>
-<li>nextTickQueue中所有任务执行掉(长度最大1e4，Node版本v6.9.1)</li>
-<li>第一步执行完后执行_runMicrotasks函数，执行microtask中的部分(promise.then注册的回调)</li>
+<p>在windows环境下，列出备份文件夹中所有的历史版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rollback=[&apos;cmd&apos;, &apos;/c&apos;, &apos;cd d:/ &amp; cd D://jenkins/workspace/backup/hc_data_admin_client &amp; dir  /d /b *.zip&apos;].execute().text.readLines()</span><br><span class="line"></span><br><span class="line">if (action.equals(&quot;RollBack&quot;)) &#123;</span><br><span class="line">  return rollback</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  return [&quot;选择RollBack后显示&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-构建"><a href="#3-构建" class="headerlink" title="3. 构建"></a>3. 构建</h1><ol>
+<li>选择Conditional step(single)进行构建</li>
+<li>若是Deploy情况，则打包项目，并拷贝压缩包至备份文件夹</li>
+<li>若是RollBack情况，则将备份文件拷贝至dist文件夹中（<em>因为Send build artifacts over SSH中传送文件到远程服务器的功能中，本地文件只能选择Workspace中的文件，故将备份文件先拷贝至dist文件夹，等构建完成后，统一进行构建后操作</em>）</li>
+<li>若要用shell，可参考<a href="https://www.jianshu.com/p/4aa5c62a8876" target="_blank" rel="noopener">Use Shell Execute with Jenkins windows master/slave</a></li>
 </ol>
-<p>查了下Vuelayers的map初始化的源码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>._createPromise = <span class="built_in">Promise</span>.resolve(<span class="keyword">this</span>.beforeInit())</span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.init())</span><br><span class="line">.then(makeEventEmitter(<span class="string">'created'</span>))</span><br></pre></td></tr></table></figure></p>
-<p><strong>因此</strong></p>
-<p>基于以上，$nextTick的执行顺序在setTimeout之前，而Vuelayers封装的map初始化方法是一个promise，所以$nextTick中map还没初始化完成，要在setTimeout中才能对map进行操作。</p>
-<hr>
-<p>参考资料：</p>
+<p>👇构建<br><img src="en-resource://database/18104:1" alt="0942a03b85555b6bf0a22f20526923a2.png"><br><code>&amp;&amp;</code>表示上一步完成才进行下一步操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"构建"</span></span><br><span class="line"></span><br><span class="line">npm install &amp;&amp; npm run build:prod &amp;&amp; <span class="string">"C:\Program Files\7-Zip\7z.exe"</span> a <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\*"</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"备份文件"</span> &amp;&amp; copy /y <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span> <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\hc_data_admin_client-%date:~0,4%-%date:~5,2%-%date:~8,2%.zip"</span></span><br></pre></td></tr></table></figure></p>
+<p>👇回滚<br><img src="en-resource://database/18106:1" alt="7ff2d30eeed58da9ca1320f784887e62.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"回滚文件%rollback%"</span> &amp;&amp; copy /y <span class="string">"D:\jenkins\workspace\backup\hc_data_admin_client\%rollback%"</span> <span class="string">"D:\Jenkins\workspace\hc_data_admin_client\dist\dist.zip"</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="4-构建后操作"><a href="#4-构建后操作" class="headerlink" title="4. 构建后操作"></a>4. 构建后操作</h1><p>用Publish over SSH将压缩包传到远程服务器</p>
+<p><img src="en-resource://database/18108:1" alt="84e1bb652d85777236ef0781554957aa.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /hdb/hcx/www/*   //删除目录下的所有文件和文件夹</span><br><span class="line">mv -f /hdb/hcx/dist.zip /hdb/hcx/www    //移动压缩包</span><br><span class="line"><span class="built_in">cd</span> /hdb/hcx/www</span><br><span class="line">unzip dist.zip  //解压</span><br><span class="line">rm -rf dist.zip  //删除压缩包</span><br></pre></td></tr></table></figure>
+<p>之后的邮件通知等参考「windows环境jenkins+gogs自动部署Vue项目 #S03」</p>
 <blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/33090541" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33090541</a><br><a href="https://juejin.im/post/5b8f76675188255c7c653811" target="_blank" rel="noopener">https://juejin.im/post/5b8f76675188255c7c653811</a><br><a href="https://juejin.im/post/5bd30dabe51d4510164a5be4" target="_blank" rel="noopener">https://juejin.im/post/5bd30dabe51d4510164a5be4</a></p>
+<p>参考：<br><a href="https://www.jianshu.com/p/dceaa1c7bb49" target="_blank" rel="noopener">使用jenkins进行项目的自动构建部署</a><br><a href="https://segmentfault.com/a/1190000019939496" target="_blank" rel="noopener">jenkins 备份和回滚（by：自己查资料学习）</a><br><a href="https://www.jianshu.com/p/35a2c423682b" target="_blank" rel="noopener">Jenkins 备份回滚实现</a><br><a href="https://www.bfshu.com/essay/jenkins/143" target="_blank" rel="noopener">jenkins+gitlab项目回滚</a></p>
 </blockquote>
 
       
@@ -411,7 +396,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/" title="setTimeout/$nextTick/promise.then的执行顺序 #S02" target="_blank" rel="external">https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/</a>
+      <a href="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/" title="windows环境下jenkins部署备份与回滚 #S04" target="_blank" rel="external">https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -459,13 +444,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" title="windows环境jenkins+gogs自动部署Vue项目 #S03"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/10/28/利用linux-crontab在docker中进行数据库定时自动备份/" title="利用linux crontab在docker中进行数据库定时自动备份 #S01"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/12/26/windows环境jenkins-gogs自动部署Vue项目-S03/" title="windows环境jenkins+gogs自动部署Vue项目 #S03"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -542,9 +523,9 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     <script defer>
     var disqus_config = function () {
         
-            this.page.url = 'https://seasonpan.github.io/2019/11/24/setTimeout-nextTick-promise-then的执行顺序/';
+            this.page.url = 'https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/';
         
-        this.page.identifier = 'setTimeout-nextTick-promise-then的执行顺序';
+        this.page.identifier = 'windows环境下jenkins部署备份与回滚-S04';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
