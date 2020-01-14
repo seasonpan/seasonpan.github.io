@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/0942a03b85555b6bf0a22f20526923a2.png">
 <meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/7ff2d30eeed58da9ca1320f784887e62.png">
 <meta property="og:image" content="https://seasonpan.github.io/2020/01/14/windows环境下jenkins部署备份与回滚-S04/84e1bb652d85777236ef0781554957aa.png">
-<meta property="og:updated_time" content="2020-01-14T02:25:49.482Z">
+<meta property="og:updated_time" content="2020-01-14T02:28:25.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows环境下jenkins部署备份与回滚 #S04">
 <meta name="twitter:description" content="摘要：windows环境下jenkins部署备份与回滚">
@@ -383,7 +383,7 @@
 <h1 id="4-构建后操作"><a href="#4-构建后操作" class="headerlink" title="4. 构建后操作"></a>4. 构建后操作</h1><p>用Publish over SSH将压缩包传到远程服务器</p>
 <p><img src="84e1bb652d85777236ef0781554957aa.png" alt="84e1bb652d85777236ef0781554957aa.png"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /hdb/hcx/www/*   //删除目录下的所有文件和文件夹</span><br><span class="line">mv -f /hdb/hcx/dist.zip /hdb/hcx/www    //移动压缩包</span><br><span class="line"><span class="built_in">cd</span> /hdb/hcx/www</span><br><span class="line">unzip dist.zip  //解压</span><br><span class="line">rm -rf dist.zip  //删除压缩包</span><br></pre></td></tr></table></figure>
-<p>之后的邮件通知等参考「windows环境jenkins+gogs自动部署Vue项目 #S03」</p>
+<p>之后的邮件通知等参考<a href="https://seasonpan.github.io/2019/12/26/windows%E7%8E%AF%E5%A2%83jenkins-gogs%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2Vue%E9%A1%B9%E7%9B%AE-S03/">「windows环境jenkins+gogs自动部署Vue项目 #S03」</a></p>
 <blockquote>
 <p>参考：<br><a href="https://www.jianshu.com/p/dceaa1c7bb49" target="_blank" rel="noopener">使用jenkins进行项目的自动构建部署</a><br><a href="https://segmentfault.com/a/1190000019939496" target="_blank" rel="noopener">jenkins 备份和回滚（by：自己查资料学习）</a><br><a href="https://www.jianshu.com/p/35a2c423682b" target="_blank" rel="noopener">Jenkins 备份回滚实现</a><br><a href="https://www.bfshu.com/essay/jenkins/143" target="_blank" rel="noopener">jenkins+gitlab项目回滚</a></p>
 </blockquote>
