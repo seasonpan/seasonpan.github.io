@@ -27,7 +27,7 @@
 <meta property="og:description" content="1. 创建需要定时运行的脚本jcch200_dev_backup.sh12345678910111213141516171819202122232425262728293031323334#config beginback_path=&quot;/hdb/webbak/hc-bak/db_bak&quot;back_count=7#config endecho $(date +%Y-%m-%d\ %H:%M:%S)&quot;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://seasonpan.github.io/2019/10/28/利用linux-crontab在docker中进行数据库定时自动备份/compose.png">
-<meta property="og:updated_time" content="2020-04-28T07:59:32.099Z">
+<meta property="og:updated_time" content="2020-04-28T08:16:17.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用linux crontab在docker中进行数据库定时自动备份 #S01">
 <meta name="twitter:description" content="1. 创建需要定时运行的脚本jcch200_dev_backup.sh12345678910111213141516171819202122232425262728293031323334#config beginback_path=&quot;/hdb/webbak/hc-bak/db_bak&quot;back_count=7#config endecho $(date +%Y-%m-%d\ %H:%M:%S)&quot;">
@@ -365,7 +365,7 @@
 </blockquote>
 <h2 id="与宿主目录挂接"><a href="#与宿主目录挂接" class="headerlink" title="与宿主目录挂接"></a>与宿主目录挂接</h2><p>其中 <code>/dbbak</code> 是容器内部文件夹，<code>/hdb/webbak/hc-bak/db_bak</code> 是宿主机文件夹，两个需进行挂接，在compose.yml中配置，修改后执行 <code>docker stack deploy -c hc-compose.yml hc</code> 使配置生效。<br><img src="compose.png" alt="compose.png"></p>
 <h1 id="2-创建crontab定时任务"><a href="#2-创建crontab定时任务" class="headerlink" title="2. 创建crontab定时任务"></a>2. 创建crontab定时任务</h1><p><code>crontab -e</code></p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#每天凌晨<span class="number">2</span>点执行备份脚本</span><br><span class="line"><span class="number">0</span> <span class="number">2</span> * * * sh /hdb/webbak/hc-bak/jcch200_dev_backup.sh &gt;/hdb/webbak/hc-bak/cron.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每天凌晨<span class="number">2</span>点执行备份脚本</span><br><span class="line"><span class="number">0</span> <span class="number">2</span> * * <span class="number">6</span> . /etc/profile; /bin/sh /hdb/webbak/hc-bak/jcch200_dev_backup.sh &gt;/hdb/webbak/hc-bak/cron.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>注意事项：</p>
 <ul>
 <li>注意清理系统用户的邮件日志。每条任务调度执行完毕，系统都会将任务输出信息通过电子邮件的形式发送给当前系统用户，这样日积月累，日志信息会非常大，可能会影响系统的正常运行，因此，将每条任务进行重定向处理非常重要。<br><code>/dev/null 2&gt;&amp;1</code>表示先将标准输出重定向到/dev/null，然后将标准错误重定向到标准输出，由于标准输出已经重定向到了/dev/null，因此标准错误也会重定向到/dev/null，这样日志输出问题就解决了。</li>
